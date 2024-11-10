@@ -1,5 +1,9 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import {
+  createBlogSchema,
+  updateBlogSchema,
+} from "@ranjann/communityink-common";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
 
@@ -41,6 +45,16 @@ blogRouter.use("/*", async (c, next) => {
 
 blogRouter.post("/", async (c) => {
   const body = await c.req.json();
+
+  const { success } = createBlogSchema.safeParse(body);
+
+  if (!success) {
+    c.status(411);
+    return c.json({
+      message: "Incorrect inputs for the post",
+    });
+  }
+
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
@@ -68,6 +82,15 @@ blogRouter.post("/", async (c) => {
 
 blogRouter.put("/", async (c) => {
   const body = await c.req.json();
+
+  const { success } = updateBlogSchema.safeParse(body);
+
+  if (!success) {
+    c.status(411);
+    return c.json({
+      message: "Incorrect inputs for the post",
+    });
+  }
 
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
