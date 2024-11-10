@@ -3,7 +3,7 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import {
   createBlogSchema,
   updateBlogSchema,
-} from "@ranjann/communityink-common";
+} from "@ranjan07/communityink-common";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
 
