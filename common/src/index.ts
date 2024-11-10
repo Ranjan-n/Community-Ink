@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const signUpSchema = z.object({
-  username: z.string().email(),
+  email: z.string().email(),
   password: z.string().min(6),
   name: z.string().optional(),
 });
@@ -9,7 +9,7 @@ export const signUpSchema = z.object({
 export type SignUpInput = z.infer<typeof signUpSchema>;
 
 export const signInSchema = z.object({
-  username: z.string().email(),
+  email: z.string().email(),
   password: z.string().min(6),
 });
 
