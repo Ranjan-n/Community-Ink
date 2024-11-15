@@ -22,7 +22,8 @@ export function SignUp() {
       const res = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, inputs);
       const token = res.data.token;
       localStorage.setItem("token", token);
-      navigate("/blogs");
+      localStorage.setItem("name", res.data.name);
+      navigate("/");
     } catch (error) {
       alert(error);
     }
