@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useBlog } from "../hooks/useBlog";
 import { Post } from "../components/Post";
+import { BlogSkeleton } from "../components/BlogSkeleton";
 
 export function Blog() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ export function Blog() {
   const { loading, blog } = useBlog(id);
 
   if (loading) {
-    return <div>Loading....</div>;
+    return <BlogSkeleton />;
   }
 
   if (!blog) {

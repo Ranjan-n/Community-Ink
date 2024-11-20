@@ -2,13 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { AppBar } from "../components/AppBar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks/useBlogs";
+import { BlogsSkeleton } from "../components/BlogsSkeleton";
 
 export function Blogs() {
   const { loading, blogs } = useBlogs();
   const navigate = useNavigate();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <BlogsSkeleton />;
   }
 
   return (
