@@ -42,7 +42,7 @@ export function SignUp({
 
   return (
     <div className="flex h-screen">
-      <div className="w-1/2 flex justify-center items-center">
+      <div className="w-full sm:w-1/2 flex justify-center items-center">
         <form
           className="flex-col items-center justify-center"
           onSubmit={handleSubmit}

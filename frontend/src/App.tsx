@@ -7,7 +7,7 @@ import { RecoilRoot } from "recoil";
 
 function App() {
   return (
-    <div className="bg-slate-50 h-screen">
+    <div>
       <RecoilRoot>
         <BrowserRouter>
           <Routes>

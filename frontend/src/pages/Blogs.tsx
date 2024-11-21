@@ -15,9 +15,9 @@ export function Blogs() {
   return (
     <div>
       <AppBar name={localStorage.getItem("name") || "Anonymous"} />
-      <div className="flex flex-col justify-between h-screen">
+      <div className="flex flex-col justify-between h-screen mt-6">
         <div className="flex justify-center">
-          <div className="w-3/5">
+          <div className="mx-8 sm:max-w-md lg:max-w-3xl">
             {blogs.map((blog) => (
               <BlogCard
                 key={blog.id}
@@ -34,16 +34,12 @@ export function Blogs() {
             ))}
           </div>
         </div>
-        <div className="flex justify-end">
-          <button
-            onClick={() => {
-              navigate("/publish");
-            }}
-            className="text-3xl mb-20 mr-16 bg-green-400 rounded-full w-10 h-10 text-white hover:text-green-400 hover:bg-white border border-green-400"
-          >
-            +
-          </button>
-        </div>
+        <button
+          onClick={() => navigate("/publish")}
+          className="fixed bottom-8 right-8 sm:bottom-16 sm:right-20 z-50 text-lg sm:text-3xl bg-green-400 rounded-full w-8 h-8 sm:w-12 sm:h-12 text-white hover:text-green-400 hover:bg-white border border-green-400 shadow-lg flex items-center justify-center"
+        >
+          +
+        </button>
       </div>
     </div>
   );

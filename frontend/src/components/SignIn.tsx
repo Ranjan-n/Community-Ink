@@ -41,7 +41,7 @@ export function SignIn({
   return (
     <div className="flex h-screen ">
       <Typer title="Welcome Back!" content={["Happy to see you again"]} />
-      <div className="w-1/2  flex justify-center items-center">
+      <div className="w-full sm:w-1/2  flex justify-center items-center">
         <form
           className="flex-col items-center justify-center max-w-80"
           onSubmit={handleSubmit}
