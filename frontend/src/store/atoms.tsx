@@ -3,7 +3,7 @@ import { Blog } from "../hooks/useBlogs";
 
 export const blogAtom = atomFamily<Blog | undefined, string>({
   key: "blogAtom",
-  default: (id) => undefined,
+  default: undefined,
 });
 
 export const loadingAtom = atom<boolean>({
