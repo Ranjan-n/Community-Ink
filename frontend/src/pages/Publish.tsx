@@ -15,6 +15,10 @@ export function Publish() {
   const handlePublish = async () => {
     try {
       setIsPublishing(true);
+      if (title.length == 0 || content.length == 0) {
+        throw new Error("Title and Description Can't be empty");
+      }
+
       const res = await axios.post(
         `${BACKEND_URL}/api/v1/blog`,
         {
@@ -42,14 +46,14 @@ export function Publish() {
     <div>
       <AppBar name={localStorage.getItem("name") || "Anonymous"} />
       <div className="min-w-2xl max-w-2xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-4 text-center text-gray-700">
+        <h1 className="text-xl sm:text-3xl font-bold mb-4 text-center text-gray-700">
           Create a new Blog
         </h1>
 
         <div className="mb-4">
           <label
             htmlFor="title"
-            className="block font-medium mb-1 text-gray-700"
+            className="block font-medium mb-1 text-sm sm:text-lg"
           >
             Title
           </label>
@@ -58,28 +62,31 @@ export function Publish() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full rounded-md shadow-sm border border-white p-1 focus:border-slate-300 focus:outline-none"
+            className="w-full rounded-md shadow-sm border border-gray-200 p-1 focus:border-slate-300 focus:outline-none"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="content" className="block font-medium mb-1">
-            Content
+          <label
+            htmlFor="content"
+            className="block text-sm sm:text-lg font-medium mb-1"
+          >
+            Description
           </label>
           <textarea
             id="content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full rounded-md shadow-sm border border-white p-1 focus:border-slate-300 focus:outline-none"
-            rows={10}
+            className="w-full rounded-md shadow-sm border border-gray-200 p-1 focus:border-slate-300 focus:outline-none"
+            rows={7}
             required
           />
         </div>
 
         <button
           onClick={handlePublish}
-          className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 disabled:bg-green-300 disabled:cursor-not-allowed"
+          className="bg-green-500 text-white text-xs sm:text-lg px-4 py-2 rounded-md hover:bg-green-600 disabled:bg-green-300 disabled:cursor-not-allowed"
           disabled={isPublishing}
         >
           {isPublishing ? "Publishing..." : "Publish"}
