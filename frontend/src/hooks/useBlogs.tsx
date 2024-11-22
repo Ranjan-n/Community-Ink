@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { BACKEND_URL } from "../../config";
 import { blogsAtom, loadingAtom } from "../store/atoms";
+import { useNavigate } from "react-router-dom";
 
 export interface Blog {
   content: string;
@@ -17,6 +18,7 @@ export interface Blog {
 export function useBlogs() {
   const [loading, setLoading] = useRecoilState(loadingAtom);
   const [blogs, setBlogs] = useRecoilState(blogsAtom);
+  const navigate = useNavigate();
 
   const fetchBlogs = () => {
     setLoading(true);
@@ -33,6 +35,7 @@ export function useBlogs() {
       .catch((error) => {
         console.error("Error fetching blogs:", error);
         setLoading(false);
+        navigate("/login");
       });
   };
 
