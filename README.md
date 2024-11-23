@@ -34,6 +34,7 @@ To run **Community-Ink** locally, follow these steps:
 
 - Node.js and npm installed.
 - PostgreSQL database setup.
+- Prisma-accelerate URL
 - Cloudflare account for deploying Workers.
 - Fork of this repository.
 
@@ -63,7 +64,7 @@ To run **Community-Ink** locally, follow these steps:
 
    ```toml
    [vars]
-   DATABASE_URL = "postgresql://user:password@localhost:5432/community_ink"
+   DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=yourAPIKey"
    JWT_SECRET = "your-secret-password"
    ```
 
