@@ -43,7 +43,7 @@ export function SignIn({
       <Typer title="Welcome Back!" content={["Happy to see you again"]} />
       <div className="w-full sm:w-1/2  flex justify-center items-center">
         <form
-          className="flex-col items-center justify-center max-w-80"
+          className="flex-col items-center justify-center max-w-80 p-7 shadow-slate-500 shadow-md sm:shadow-none"
           onSubmit={handleSubmit}
         >
           <LoginHeading heading="Login into your Account" />

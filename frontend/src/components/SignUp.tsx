@@ -44,7 +44,7 @@ export function SignUp({
     <div className="flex h-screen">
       <div className="w-full sm:w-1/2 flex justify-center items-center">
         <form
-          className="flex-col items-center justify-center"
+          className="flex-col items-center justify-center p-7 shadow-slate-500 shadow-md sm:shadow-none"
           onSubmit={handleSubmit}
         >
           <LoginHeading heading="Create your Account" />
