@@ -4,6 +4,7 @@ import { Blogs } from "./pages/Blogs";
 import { Blog } from "./pages/Blog";
 import { Publish } from "./pages/Publish";
 import { RecoilRoot } from "recoil";
+import { ErrorPage } from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/blog/:id" element={<Blog />} />
             <Route path="/publish" element={<Publish />} />
+            <Route path="/error" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>

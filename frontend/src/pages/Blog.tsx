@@ -8,7 +8,8 @@ export function Blog() {
   const navigate = useNavigate();
 
   if (!id) {
-    return <div>ERRORRR!!</div>;
+    navigate("/error");
+    return;
   }
 
   const { loading, blog } = useBlog(id);
@@ -18,7 +19,8 @@ export function Blog() {
   }
 
   if (!blog) {
-    return <div>ERRORRR!!</div>;
+    navigate("/error");
+    return;
   }
 
   return (
