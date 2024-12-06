@@ -3,6 +3,7 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
 import { sign } from "hono/jwt";
 import { signUpSchema } from "@ranjan07/communityink-common";
+import bcrypt from "bcryptjs";
 
 export const userRouter = new Hono<{
   Bindings: {
@@ -39,14 +40,16 @@ userRouter.post("/signup", async (c) => {
     if (user) {
       c.status(403);
       return c.json({
-        error: "Error while Signing Up. User already exists",
+        error: "User already exists",
       });
     }
+
+    const hashedPassword = await bcrypt.hash(body.password, 10);
 
     const res = await prisma.user.create({
       data: {
         email: body.email,
-        password: body.password,
+        password: hashedPassword,
         name: body.name,
       },
     });
@@ -58,9 +61,9 @@ userRouter.post("/signup", async (c) => {
       name: body.name,
     });
   } catch (err) {
-    c.status(403);
+    c.status(500);
     return c.json({
-      error: "User already exists.",
+      error: "Error while signing up",
     });
   }
 });
@@ -84,26 +87,35 @@ userRouter.post("/signin", async (c) => {
     const user = await prisma.user.findUnique({
       where: {
         email: body.email,
-        password: body.password,
       },
     });
 
     if (!user) {
       c.status(403);
       return c.json({
-        error: "user not found",
+        error: "User not found",
+      });
+    }
+
+    const isPasswordValid = await bcrypt.compare(body.password, user.password);
+
+    if (!isPasswordValid) {
+      c.status(403);
+      return c.json({
+        error: "Invalid credentials",
       });
     }
 
     const token = await sign({ id: user.id }, c.env.JWT_SECRET);
+
     return c.json({
       token,
       name: user.name,
     });
   } catch (err) {
-    c.status(403);
+    c.status(500);
     return c.json({
-      error: "Internal Server error",
+      error: "Internal server error",
     });
   }
 });
