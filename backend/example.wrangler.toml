@@ -1,0 +1,7 @@
+name = "backend"
+main = "src/index.ts"
+compatibility_date = "2024-11-03"
+
+[vars]
+DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=yourAPIKey"
+JWT_SECRET = "your-secret-password"
